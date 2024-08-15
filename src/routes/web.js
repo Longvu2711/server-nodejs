@@ -1,17 +1,14 @@
 const express = require('express')
-
+const {getHomePage,getView,getCheck,getUser} = require('../controllers/homeController')
 
 const router = express.Router()
 
 
-router.get('/', (req, res) => {
-    res.send('server on')
-  })
-router.get('/check',(req , res)=>{
-    res.send('input text')
-  })
-router.get('/view',(req , res)=>{
-    res.render('new.ejs')
-  })
+router.get('/', getHomePage)
+router.get('/view',getView)
+router.get('/check',getCheck)
+router.get('/user',getUser)
+router.get('/users',getUser)
 
+    
 module.exports = router
