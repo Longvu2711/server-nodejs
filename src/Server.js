@@ -8,6 +8,8 @@ const mongoose = require('mongoose')
 
 var port = process.env.PORT ||8081
 var url = process.env.URL
+var test = process.env.COLLECTION
+
 console.log('Static directory:', path.join(__dirname, 'public'));
 configViewEngine(app)
 
@@ -27,13 +29,3 @@ mongoose.connect(url)
   console.log(error)
 })
 
-app.get('/api',async(req,res)=>{
-  try{
-      const test = mongoose.connection.db.collection('test')
-      const testData = await test.find({}).toArray()
-      res.json(testData)
-  }
-  catch(err){
-    res.status(500).json({message:err.message})
-  }
-})

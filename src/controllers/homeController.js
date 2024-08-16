@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+require('dotenv').config()
 
 const getHomePage = (req, res) =>{
     res.send('home')
@@ -13,7 +13,7 @@ const getCheck = (req, res)=>{
 
 const getTestApi = async(req,res)=>{
     try{
-        const test = mongoose.connection.db.collection('test')
+        const test = mongoose.connection.db.collection(process.env.TEST_COLLECTION)
         const testData = await test.find({}).toArray()
 
         const prettyData = JSON.stringify(testData, null, 2)
@@ -23,10 +23,8 @@ const getTestApi = async(req,res)=>{
     catch(err){
       res.status(500).json({message:err.message})
     }
-  }
+}
   
-
-
 module.exports = {
     getHomePage,getView,getCheck,getTestApi
 }
