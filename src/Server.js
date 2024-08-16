@@ -4,10 +4,8 @@ const path = require('path')
 const configViewEngine = require('./config/viewEngine')
 const webRouter = require('./routes/web')
 require('dotenv').config()
-
-
 const mongoose = require('mongoose')
-const User = require('./models/model')
+
 var port = process.env.PORT ||8081
 var url = process.env.URL
 console.log('Static directory:', path.join(__dirname, 'public'));
@@ -21,13 +19,21 @@ app.listen(port, () => {
 
 mongoose.connect(url)
 .then(()=> {
-  console.log("connected")
+  console.log("connected to Mongodb")
   
 })
-.catch(()=>{
+.catch((error)=>{
   console.log("failed")
+  console.log(error)
 })
-app.get('/testJson',async(req ,res)=>{
-  const testdata = await User.find()
-  res.json(testdata)
+
+app.get('/api',async(req,res)=>{
+  try{
+      const test = mongoose.connection.db.collection('test')
+      const testData = await test.find({}).toArray()
+      res.json(testData)
+  }
+  catch(err){
+    res.status(500).json({message:err.message})
+  }
 })
