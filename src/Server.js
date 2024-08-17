@@ -22,10 +22,9 @@ app.listen(port, () => {
 mongoose.connect(url)
 .then(()=> {
   console.log("connected to Mongodb")
-  
 })
 .catch((error)=>{
-  console.log("failed")
+  console.log("connect failed")
   console.log(error)
 })
 
