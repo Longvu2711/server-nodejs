@@ -1,5 +1,5 @@
 const express = require('express')
-const {getHomePage,getView,getCheck,getName, getTestApi, getUserList, postNewUser, getById, getByName, getUpdateUser} = require('../controllers/homeController')
+const {getHomePage,getView,getCheck,getName, getTestApi, getUserList, postNewUser, getById, getByName, getUpdateUser, getDeleteUser} = require('../controllers/homeController')
 
 const router = express.Router()
 
@@ -8,18 +8,21 @@ router.get('/view',getView)
 router.get('/check',getCheck)
 
 //get all
-router.get('/api/user',getUserList)
+router.get('/user',getUserList)
 router.get('/api/user',getTestApi)
-router.get('/api/user/getname',getName)
+router.get('/user/getname',getName)
 
 //get id
-router.get('/api/user/:id',getById)
-router.get('/api/user/name/:name',getByName)
+router.get('/user/:id',getById)
+router.get('/user/:name',getByName)
 
 //post
-router.post('/api/user/newuser',postNewUser)
+router.post('/user',postNewUser)
 
 //update
-router.put('/api/user/:id',getUpdateUser)
+router.put('/user/:id',getUpdateUser)
+
+//delete
+router.delete('/user/:id',getDeleteUser)
 
 module.exports = router
