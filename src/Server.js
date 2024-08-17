@@ -6,14 +6,17 @@ const webRouter = require('./routes/web')
 require('dotenv').config()
 const mongoose = require('mongoose')
 
+
+//this must place about those
+app.use(express.json())
+app.use('/',webRouter)
+
 var port = process.env.PORT ||8081
 var url = process.env.URL
-var test = process.env.COLLECTION
 
 console.log('Static directory:', path.join(__dirname, 'public'));
 configViewEngine(app)
 
-app.use('/',webRouter)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port} : http://localhost:${port}`)
