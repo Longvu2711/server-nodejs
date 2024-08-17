@@ -63,6 +63,32 @@ const getName = async (req, res) => {
     }
 }
 
+
+//get by id
+
+
+const getById = async (req , res)=>{
+    try {
+        const {id} = req.params
+        const user = await User.findById(id)  
+        res.status(200).json(user)
+    }
+    catch (error){ 
+        res.status(500).json({message:error.message})
+    }
+}
+//get by name
+const getByName = async (req , res)=>{
+    try {
+        const {name} = req.params
+        const user = await User.findOne({name:name})  
+        res.status(200).json(user)
+    }
+    catch (error){ 
+        res.status(500).json({message:error.message})
+    }
+}
+
 //post
 const postNewUser = async ( req,res)=>{
     console.log(req.body)
@@ -74,7 +100,9 @@ const postNewUser = async ( req,res)=>{
     }
 }
 
+
+
 module.exports = {
     getHomePage,getView,getCheck,getTestApi,getName,getUserList,
-    postNewUser
+    postNewUser,getById,getByName
 }
