@@ -5,9 +5,11 @@ const configViewEngine = require('./config/viewEngine')
 const webRouter = require('./routes/web')
 require('dotenv').config()
 const mongoose = require('mongoose')
+const logger = require('./middleware/mid')
 
 
-//this must place about those
+//this must place about 
+app.use(logger)
 app.use(express.json())
 app.use('/',webRouter)
 
@@ -30,4 +32,3 @@ mongoose.connect(url)
   console.log("connect failed")
   console.log(error)
 })
-

@@ -1,6 +1,7 @@
 const express = require('express')
 const {getHomePage,getView,getCheck,getName, getTestApi, getUserList, postNewUser, getById, getByName, getUpdateUser, getDeleteUser} = require('../controllers/homeController')
 
+
 const router = express.Router()
 
 router.get('/', getHomePage)

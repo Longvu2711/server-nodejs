@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const User = require('../models/model')
 require('dotenv').config()
 
-
+//test
 const getHomePage = (req, res) => {
     res.send('home')
 }
@@ -22,10 +22,8 @@ const getUserList = async (req, res) => {
         const prettyData = JSON.stringify(testData, null, 2)
         res.setHeader('Content-Type', 'application/json')
         res.send(prettyData)
-        console.log('get api done')
     }
     catch (err) {
-        console.log('get data error')
         res.status(500).json({ message: err.message })
     }
 }
@@ -36,10 +34,8 @@ const getTestApi = async (req, res) => {
         const prettyData = JSON.stringify(testData, null, 2)
         res.setHeader('Content-Type', 'application/json')
         res.send(prettyData)
-        console.log('get api done')
     }
     catch (err) {
-        console.log('get data error')
         res.status(500).json({ message: err.message })
     }
 }
