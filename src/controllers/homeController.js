@@ -4,7 +4,7 @@ require('dotenv').config()
 
 //test
 const getHomePage = (req, res) => {
-    res.send('home')
+    res.render('new.ejs')
 }
 const getView = (req, res) => {
     res.render('new.ejs')
@@ -12,6 +12,19 @@ const getView = (req, res) => {
 const getCheck = (req, res) => {
     res.send('cunny')
 }
+const getFormAddUser = (req,res) => {
+    const defaultData = {
+        name: '',
+        email: '',
+        password: '',
+        phonenumber: '',
+        role: '',
+        age: '',
+        sex: ''
+    }
+    res.render('addUser.ejs',defaultData)
+}
+
 
 
 //get
@@ -130,5 +143,6 @@ const getDeleteUser = async (req, res) => {
 
 module.exports = {
     getHomePage, getView, getCheck, getTestApi, getName, getUserList,
-    postNewUser, getById, getByName, getUpdateUser,getDeleteUser
+    postNewUser, getById, getByName, getUpdateUser,getDeleteUser,
+    getFormAddUser
 }

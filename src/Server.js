@@ -12,6 +12,8 @@ const logger = require('./middleware/mid')
 app.use(logger)
 app.use(express.json())
 app.use('/',webRouter)
+app.use(express.urlencoded({ extended: true }));
+
 
 var port = process.env.PORT ||8081
 var url = process.env.URL

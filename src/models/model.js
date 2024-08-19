@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema(
             type:String,
             required:false
         },
+        password:{
+            type: String,
+            required:false
+        },
         phonenumber:{
             type: String,
             required:false
@@ -26,6 +30,7 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required:false
         }
+        
     },{collection:'test'}
     
 )
