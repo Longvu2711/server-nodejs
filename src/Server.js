@@ -13,13 +13,12 @@ app.use(logger)
 app.use(express.json())
 app.use('/',webRouter)
 app.use(express.urlencoded({ extended: true }));
-
+configViewEngine(app)
 
 var port = process.env.PORT ||8081
 var url = process.env.URL
 
 console.log('Static directory:', path.join(__dirname, 'public'));
-configViewEngine(app)
 
 
 app.listen(port, () => {

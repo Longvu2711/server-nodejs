@@ -1,5 +1,5 @@
 const express = require('express')
-const {getHomePage,getView,getCheck,getName, getTestApi, getUserList, postNewUser, getById, getByName, getUpdateUser, getDeleteUser,getFormAddUser, getTestData
+const {getHomePage,getView,getCheck,getName, getTestApi, getUserList, postNewUser, getById, getByName, getUpdateUser, getDeleteUser
 } = require('../controllers/homeController')
 const { resolveInclude } = require('ejs')
 
@@ -21,9 +21,6 @@ router.get('/user/:name',getByName)
 
 //post
 router.post('/newuser',postNewUser)
-
-//post form
-router.get('/adduser',getFormAddUser)
 //update
 router.put('/user/:id',getUpdateUser)
 
