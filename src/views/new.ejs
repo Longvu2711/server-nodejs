@@ -10,6 +10,26 @@
     <h1>this is EJS 
     </h1>
     <h2> view engine is working</h2>
-    <img class="pic" src="/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif" alt="First Image">
+    <img class = "pic" id="i" src="/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif" alt="First Image">
+    <!-- <button class ="btn"onclick="switchImage()">Switch</button> -->
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="switchImg()"
+>   
+    Switch
+</button>
+
+    
+    <script>
+        function switchImg() {
+            const img = document.getElementById('i')
+            if (img.src.includes("/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif")){
+                img.src = "/images/momoi-momoi-saiba.gif"
+            }
+            else{
+                img.src = "/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif"
+            }
+        }
+    </script>
 </body>
-</html>
