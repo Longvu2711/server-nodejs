@@ -1,17 +1,20 @@
 const express = require('express')
-const app = express()
 const path = require('path')
 const configViewEngine = require('./config/viewEngine')
 const webRouter = require('./routes/web')
+const apiRouter = require('./routes/auth.route')
 require('dotenv').config()
 const mongoose = require('mongoose')
 const logger = require('./middleware/mid')
 
 
 //this must place about 
+const app = express()
 app.use(logger)
 app.use(express.json())
-app.use('/',webRouter)
+app.use('/test',webRouter)
+app.use('/api',apiRouter)
+
 app.use(express.urlencoded({ extended: true }));
 configViewEngine(app)
 

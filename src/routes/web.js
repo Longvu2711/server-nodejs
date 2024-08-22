@@ -12,7 +12,6 @@ router.get('/check',getCheck)
 
 //get all
 router.get('/user',getUserList)
-router.get('/api/user',getTestApi)
 router.get('/user/getname',getName)
 
 //get id

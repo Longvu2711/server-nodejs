@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const User = require('../models/model')
+const testUser = require('../models/model')
 require('dotenv').config()
 
 //test
@@ -65,7 +65,7 @@ const getName = async (req, res) => {
 const getById = async (req, res) => {
     try {
         const { id } = req.params
-        const user = await User.findById(id)
+        const user = await testUser.findById(id)
         res.status(200).json(user)
     }
     catch (error) {
@@ -76,7 +76,7 @@ const getById = async (req, res) => {
 const getByName = async (req, res) => {
     try {
         const { name } = req.params
-        const user = await User.findOne({ name: name })
+        const user = await testUser.findOne({ name: name })
         res.status(200).json(user)
     }
     catch (error) {
@@ -88,7 +88,7 @@ const getByName = async (req, res) => {
 const postNewUser = async (req, res) => {
     console.log(req.body)
     try {
-        const user = await User.create(req.body)
+        const user = await testUser.create(req.body)
         res.status(200).json(user)
    } catch (err) {
         res.status(500).json({ message: err.message })
@@ -100,7 +100,7 @@ const getUpdateUser = async (req, res) => {
     try {
         const { id } = req.params
 
-        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+        const updatedUser = await testUser.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
         if (!updatedUser) {
             res.status(404).json({ message: 'not found id' })
         }
@@ -117,7 +117,7 @@ const getUpdateUser = async (req, res) => {
 const getDeleteUser = async (req, res) => {
     try {
         const { id } = req.params
-        const deleteUser = await User.findByIdAndDelete(id)
+        const deleteUser = await testUser.findByIdAndDelete(id)
         if(!deleteUser){
             res.status(404).json({ message: 'user not found' })
         }
