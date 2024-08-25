@@ -15,7 +15,7 @@ const getCheck = (req, res) => {
 
 
 
-//get
+//get all user 
 const getUserList = async (req, res) => {
     try {
         const test = mongoose.connection.db.collection(process.env.TEST_COLLECTION)
@@ -28,6 +28,34 @@ const getUserList = async (req, res) => {
         res.status(500).json({ message: err.message })
     }
 }
+
+
+//get user by list page
+const getUserPage = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page)||1
+        const limit = parseInt(req.query.limit)||10
+        const skip = (page -1)* limit 
+
+        const user = await testUser.find().skip(skip).limit(limit)
+        const total = await testUser.countDocuments()
+
+        res.status(200).json({
+            total,
+            page,
+            page:Math.ceil(total/ limit),
+            users : user
+        })
+
+        
+    }
+    catch(err){
+        res.status(500).json({message: err.message})
+    }
+}
+
+
+
 const getTestApi = async (req, res) => {
     try {
         const test = mongoose.connection.db.collection(process.env.TEST_COLLECTION)
@@ -90,7 +118,7 @@ const postNewUser = async (req, res) => {
     try {
         const user = await testUser.create(req.body)
         res.status(200).json(user)
-   } catch (err) {
+    } catch (err) {
         res.status(500).json({ message: err.message })
     }
 }
@@ -118,7 +146,7 @@ const getDeleteUser = async (req, res) => {
     try {
         const { id } = req.params
         const deleteUser = await testUser.findByIdAndDelete(id)
-        if(!deleteUser){
+        if (!deleteUser) {
             res.status(404).json({ message: 'user not found' })
         }
         res.status(200).json({ message: 'deleted user' })
@@ -131,6 +159,6 @@ const getDeleteUser = async (req, res) => {
 
 module.exports = {
     getHomePage, getView, getCheck, getTestApi, getName, getUserList,
-    postNewUser, getById, getByName, getUpdateUser,getDeleteUser,
-    
+    postNewUser, getById, getByName, getUpdateUser, getDeleteUser,getUserPage
+
 }

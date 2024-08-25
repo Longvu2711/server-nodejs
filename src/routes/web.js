@@ -1,7 +1,6 @@
 const express = require('express')
-const {getHomePage,getView,getCheck,getName, getTestApi, getUserList, postNewUser, getById, getByName, getUpdateUser, getDeleteUser
+const {getHomePage,getView,getCheck,getName, getTestApi, getUserList, postNewUser, getById, getByName, getUpdateUser, getDeleteUser, getUserPage
 } = require('../controllers/homeController')
-const { resolveInclude } = require('ejs')
 
 
 const router = express.Router()
@@ -11,7 +10,8 @@ router.get('/view',getView)
 router.get('/check',getCheck)
 
 //get all
-router.get('/user',getUserList)
+// router.get('/user',getUserList)
+router.get('/user',getUserPage)
 router.get('/user/getname',getName)
 
 //get id
