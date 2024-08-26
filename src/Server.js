@@ -1,14 +1,14 @@
-import express from 'express';
-import path from 'path';
-import configViewEngine from './config/viewEngine.js';
+import express from 'express'
+import path from 'path'
+import configViewEngine from './config/viewEngine.js'
 import webRouter from './routes/web.js';
-import apiRouter from './routes/auth.route.js';
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import logger from './middleware/mid.js';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
+import apiRouter from './routes/auth.route.js'
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
+import logger from './middleware/mid.js'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+import cors from 'cors'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,10 +22,12 @@ dotenv.config();
 
 //this must place about 
 const app = express()
+app.use(cors())
 app.use(logger)
 app.use(express.json())
 app.use('/test',webRouter)
 app.use('/api',apiRouter)
+
 
 app.use(express.urlencoded({ extended: true }));
 configViewEngine(app)

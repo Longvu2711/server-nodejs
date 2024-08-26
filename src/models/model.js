@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
-
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const testUserSchema = new mongoose.Schema(
     {
@@ -19,7 +20,7 @@ const testUserSchema = new mongoose.Schema(
         phonenumber: {
             type: String,
             required: false,
-            unique: true
+            unique: false
         },
         role: {
             type: String,
@@ -43,8 +44,6 @@ const testUserSchema = new mongoose.Schema(
     {
         timestamps:true
     }
-
-    , { collection: 'test' }
 )
 
 testUserSchema.pre('save', async function(next) {
