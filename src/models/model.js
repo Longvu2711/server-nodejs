@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
+
 
 const testUserSchema = new mongoose.Schema(
     {
@@ -8,19 +9,22 @@ const testUserSchema = new mongoose.Schema(
         },
         email: {
             type: String,
-            required: false
+            required: true,
+            unique : true
         },
         password: {
             type: String,
-            required: false
+            required: true
         },
         phonenumber: {
             type: String,
-            required: false
+            required: false,
+            unique: true
         },
         role: {
             type: String,
-            required: false
+            required: false,
+            default:'user'
         },
         age: {
             type: Number,
@@ -35,12 +39,21 @@ const testUserSchema = new mongoose.Schema(
             required: false
         }           
     
+    },
+    {
+        timestamps:true
     }
-    , { collection: 'test' }
 
+    , { collection: 'test' }
 )
 
-const testUser = mongoose.model('test', testUserSchema)
+testUserSchema.pre('save', async function(next) {
+    if (!this.isModified('password')) return next()
+    const salt = await bcrypt.genSalt(10)
+    this.password = await bcrypt.hash(this.password, salt)
+    next()
+})
 
+const testUser = mongoose.model('test', testUserSchema)
 
 module.exports = testUser

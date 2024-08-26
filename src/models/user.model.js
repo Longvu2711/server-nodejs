@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
-const { search } = require('../routes/web')
+import mongoose from 'mongoose';
+import { search } from '../routes/web.js';
+
 
 const UserSchema =  mongoose.Schema(
     {

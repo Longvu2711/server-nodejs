@@ -1,11 +1,14 @@
-const express = require('express')
-const path = require('path')
-const configViewEngine = require('./config/viewEngine')
-const webRouter = require('./routes/web')
-const apiRouter = require('./routes/auth.route')
-require('dotenv').config()
-const mongoose = require('mongoose')
-const logger = require('./middleware/mid')
+import express from 'express';
+import path from 'path';
+import configViewEngine from './config/viewEngine.js';
+import webRouter from './routes/web.js';
+import apiRouter from './routes/auth.route.js';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import logger from './middleware/mid.js';
+
+dotenv.config();
+
 
 
 //this must place about 
@@ -18,8 +21,8 @@ app.use('/api',apiRouter)
 app.use(express.urlencoded({ extended: true }));
 configViewEngine(app)
 
-var port = process.env.PORT ||8081
-var url = process.env.URL
+const port = process.env.PORT ||8081
+const url = process.env.URL
 
 console.log('Static directory:', path.join(__dirname, 'public'));
 

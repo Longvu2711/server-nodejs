@@ -1,6 +1,8 @@
-const mongoose = require('mongoose')
-const testUser = require('../models/model')
-require('dotenv').config()
+import mongoose from 'mongoose';
+import testUser from '../models/model.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 //test
 const getHomePage = (req, res) => {
