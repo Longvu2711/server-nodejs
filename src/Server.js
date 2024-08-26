@@ -6,6 +6,15 @@ import apiRouter from './routes/auth.route.js';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import logger from './middleware/mid.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+console.log('Static directory:', path.join(__dirname, 'public'));
+
 
 dotenv.config();
 

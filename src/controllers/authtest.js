@@ -1,4 +1,4 @@
-import testUser from "../models/model.js"
+import {testUser} from "../models/model.js"
 
 
 

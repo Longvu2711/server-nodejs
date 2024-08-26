@@ -26,7 +26,7 @@ router.put('/user/:id',getUpdateUser)
 router.delete('/user/:id',getDeleteUser)
 
 router.post('/login',Login)
-Router.post('/signup',Signup)
+router.post('/signup',Signup)
 
 
-module.exports = router
+export default router

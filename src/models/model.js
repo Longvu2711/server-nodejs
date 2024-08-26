@@ -54,6 +54,4 @@ testUserSchema.pre('save', async function(next) {
     next()
 })
 
-const testUser = mongoose.model('test', testUserSchema)
-
-module.exports = testUser
+export const testUser = mongoose.model('test', testUserSchema)

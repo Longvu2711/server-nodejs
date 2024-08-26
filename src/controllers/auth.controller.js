@@ -1,7 +1,7 @@
-import User from '../models/user.model.js'
+import {User} from '../models/user.model.js'
 
 
-const signup = async (req, res)=>{
+export const signup = async (req, res)=>{
     console.log(req.body)
     try{
         const {email,password,username} = req.body
@@ -34,12 +34,8 @@ const signup = async (req, res)=>{
     }
 }
 
-const login = (req,res) => {
+export const login = (req,res) => {
     res.send('login')
 }
 
-
-module.exports ={
-    login,signup
-}
 

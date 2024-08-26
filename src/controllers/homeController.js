@@ -1,24 +1,24 @@
-import mongoose from 'mongoose';
-import testUser from '../models/model.js';
-import dotenv from 'dotenv';
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+import { testUser } from '../models/model.js';
 
 dotenv.config();
 
 //test
-const getHomePage = (req, res) => {
+export const getHomePage = (req, res) => {
     res.render('new.ejs')
 }
-const getView = (req, res) => {
+export const getView = (req, res) => {
     res.render('new.ejs')
 }
-const getCheck = (req, res) => {
+export const getCheck = (req, res) => {
     res.send('cunny')
 }
 
 
 
 //get all user 
-const getUserList = async (req, res) => {
+export const getUserList = async (req, res) => {
     try {
         const test = mongoose.connection.db.collection(process.env.TEST_COLLECTION)
         const testData = await test.find({}).toArray()
@@ -33,7 +33,7 @@ const getUserList = async (req, res) => {
 
 
 //get user by list page
-const getUserPage = async (req, res) => {
+export const getUserPage = async (req, res) => {
     try {
         const page = parseInt(req.query.page)||1
         const limit = parseInt(req.query.limit)||10
@@ -58,7 +58,7 @@ const getUserPage = async (req, res) => {
 
 
 
-const getTestApi = async (req, res) => {
+export const getTestApi = async (req, res) => {
     try {
         const test = mongoose.connection.db.collection(process.env.TEST_COLLECTION)
         const testData = await test.find({}).toArray()
@@ -71,13 +71,13 @@ const getTestApi = async (req, res) => {
     }
 }
 //for search data
-const getData = async (projection) => {
+export const getData = async (projection) => {
     const db = mongoose.connection.db;
     const collectionTest = db.collection('test');
     return await collectionTest.find({}, { projection }).toArray()
 }
 
-const getName = async (req, res) => {
+export const getName = async (req, res) => {
     const test = mongoose.connection.db.collection(process.env.TEST_COLLECTION)
 
     try {
@@ -92,7 +92,7 @@ const getName = async (req, res) => {
 
 
 //get by id
-const getById = async (req, res) => {
+export const getById = async (req, res) => {
     try {
         const { id } = req.params
         const user = await testUser.findById(id)
@@ -103,7 +103,7 @@ const getById = async (req, res) => {
     }
 }
 //get by name
-const getByName = async (req, res) => {
+export const getByName = async (req, res) => {
     try {
         const { name } = req.params
         const user = await testUser.findOne({ name: name })
@@ -115,7 +115,7 @@ const getByName = async (req, res) => {
 }
 
 //post
-const postNewUser = async (req, res) => {
+export const postNewUser = async (req, res) => {
     console.log(req.body)
     try {
         const user = await testUser.create(req.body)
@@ -126,7 +126,7 @@ const postNewUser = async (req, res) => {
 }
 //update 
 
-const getUpdateUser = async (req, res) => {
+export const getUpdateUser = async (req, res) => {
     try {
         const { id } = req.params
 
@@ -144,7 +144,7 @@ const getUpdateUser = async (req, res) => {
 
 //delete 
 
-const getDeleteUser = async (req, res) => {
+export const getDeleteUser = async (req, res) => {
     try {
         const { id } = req.params
         const deleteUser = await testUser.findByIdAndDelete(id)
@@ -159,8 +159,3 @@ const getDeleteUser = async (req, res) => {
     }
 }
 
-module.exports = {
-    getHomePage, getView, getCheck, getTestApi, getName, getUserList,
-    postNewUser, getById, getByName, getUpdateUser, getDeleteUser,getUserPage
-
-}

@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { search } from '../routes/web.js';
 
 
 const UserSchema =  mongoose.Schema(
@@ -30,6 +29,5 @@ const UserSchema =  mongoose.Schema(
     }
 )
 
-const User = mongoose.model('User',UserSchema)
+export const User = mongoose.model('User',UserSchema)
 
-module.exports = User
