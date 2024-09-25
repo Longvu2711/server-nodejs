@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel ="stylesheet" href ="/css/new.css">
+    <link rel="stylesheet" href="/css/new.css">
     <title></title>
 </head>
+
 <body>
-    <h1>this is EJS 
+    <h1>this is EJS
     </h1>
     <h2> view engine is working</h2>
-    <img class = "pic" id="i" src="/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif" alt="First Image">
-<button
-    type="button"
-    class="btn btn-primary"
-    onclick="switchImg()"
->   
-    Switch
-</button>
-
-    
-    <script>
+    <img class="pic" id="i" src="/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif" alt="First Image">
+    <button type="button" class="btn btn-primary" onclick="switchImg()">
+        Switch
+    </button>
+    <p class="pc"
+    id="pc"> MAC </p>
+    <button type="button"
+        class="change" 
+        onclick="changePC()">
+    Change
+    </button>
+        <script>
         function switchImg() {
-            const img = document.getElementById('i')
-            if (img.src.includes("/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif")){
-                img.src = "/images/momoi-momoi-saiba.gif"
-            }
-            else{
-                img.src = "/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif"
-            }
+        const img = document.getElementById('i')
+        if (img.src.includes("/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif")){
+        img.src = "/images/momoi-momoi-saiba.gif"
         }
-    </script>
+        else{
+        img.src = "/images/a890ffa123b1c2c6e2c069a3c9da20ea.gif"
+        }
+        }
+
+        function change(){
+            const pc = document.getElementById('pc')
+            const btn = document.getElementById('change')
+
+            let isMac = true 
+
+            btn.addEventListener('click',function(){
+            if( isMac){
+                pc.textContent('this is Ios')
+            }
+            else {
+                pc.textContent('this is Window')
+            }
+            isMac = !isMac
+        }
+    )
+        }
+        </script>
 </body>
